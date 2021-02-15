@@ -9,7 +9,7 @@ test('should be able to push on stack', () => {
 
     stack.push(1)
     stack.push(2)
-    
+
     expect(stack.size()).toBe(2);
     expect(stack.peek()).toBe(2);
 })
@@ -27,14 +27,15 @@ test('should be able to pop from stack', () => {
 
 test('should return zero as size when there are no elements', () => {
     let stack = new Stack()
-    
+
     expect(stack.size()).toBe(0);
 })
 
 test('should return null on peek when stack is empty', () => {
     let stack = new Stack()
-    
+
     expect(stack.peek()).toBe(null);
+    expect(stack.pop()).toBe(null);
 })
 
 

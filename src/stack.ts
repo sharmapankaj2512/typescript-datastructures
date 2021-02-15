@@ -20,6 +20,8 @@ export default class Stack {
     }
 
     pop() {
+        if (this.elements.length == 0)
+            return null;
         return this.elements.pop()
     }
 }
