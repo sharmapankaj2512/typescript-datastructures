@@ -1,7 +1,7 @@
-import {MockReader} from "./MockReader";
-import {MockWriter} from "./MockWriter";
+import {MockReader} from "../test-helpers/MockReader";
+import {MockWriter} from "../test-helpers/MockWriter";
 import MyApp from "../MyApp";
-import MockDoorFactory from "./MockDoorFactory";
+import MockDoorFactory from "../test-helpers/MockDoorFactory";
 import mock = jest.mock;
 
 test('processes valid create-doors command',()=>{

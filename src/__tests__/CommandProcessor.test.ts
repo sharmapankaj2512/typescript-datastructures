@@ -1,7 +1,7 @@
 import CommandProcessor  from "../CommandProcessor";
-import {MockReader} from "./MockReader";
-import {MockWriter} from "./MockWriter";
-import MockDoorFactory from "./MockDoorFactory";
+import {MockReader} from "../test-helpers/MockReader";
+import {MockWriter} from "../test-helpers/MockWriter";
+import MockDoorFactory from "../test-helpers/MockDoorFactory";
 test('processes valid create-doors command',()=>{
     let mockReader=new MockReader();
     let mockWriter=new MockWriter();
