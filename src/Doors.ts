@@ -14,4 +14,8 @@ export default class Doors {
         for (let i = 1; i <= doorsToCreate; i++)
             this.doors.push(new Door(i, "CLOSED"));
     }
+
+    status(){
+        return this.doors;
+    }
 }

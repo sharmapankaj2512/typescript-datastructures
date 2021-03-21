@@ -1,13 +1,16 @@
-export class MockReader{
-    commandList:Array<string>=[];
+export class MockReader {
+    commandList: Array<string> = [];
+
     constructor() {
-        this.read=this.read.bind(this);
-        this.addCommand=this.addCommand.bind(this);
+        this.read = this.read.bind(this);
+        this.addCommand = this.addCommand.bind(this);
     }
-    addCommand(command:string){
+
+    addCommand(command: string) {
         this.commandList.push(command);
     }
-    read(){
+
+    read() {
         return this.commandList.shift();
     }
 }

@@ -6,11 +6,13 @@ export default class CommandProcessor {
     doorFactory: DoorFactory;
     readonly createDoorsRegex = /^create-doors\s([-?[A-Z0-9]+)$/i;
     readonly quitRegex = /^quit$/i;
+    readonly statusRegex = /^status$/i;
 
     constructor(reader: () => string, writer: (string) => void, doorFactory: DoorFactory = new DoorFactory()) {
         this.reader = reader;
         this.writer = writer;
         this.doorFactory = doorFactory;
+        this.process=this.process.bind(this);
     }
 
     process() {
@@ -21,6 +23,11 @@ export default class CommandProcessor {
             }
             if (this.quitRegex.test(command)) {
                 return this.processQuitCommand();
+            }
+            if (this.statusRegex.test(command)) {
+                let status = this.doorFactory.status();
+                this.writer(status);
+                return false;
             }
             this.writer("Please enter a valid create-doors command");
         } catch (e) {
@@ -34,7 +41,7 @@ export default class CommandProcessor {
         let no = createDoorCommand[1];
         this.doorFactory.make(no);
         this.writer(`${no} doors created.`);
-        return false
+        return false;
     }
 
     private processQuitCommand() {

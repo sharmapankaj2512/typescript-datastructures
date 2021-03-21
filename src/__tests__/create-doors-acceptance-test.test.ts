@@ -4,10 +4,10 @@ import MyApp from "../MyApp";
 import MockDoorFactory from "../test-helpers/MockDoorFactory";
 import mock = jest.mock;
 
-test('processes valid create-doors command',()=>{
+test('processes valid create-doors command', () => {
     let mockReader = new MockReader();
     let mockWriter = new MockWriter();
-    let myApp = new MyApp(mockReader.read,mockWriter.write);
+    let myApp = new MyApp(mockReader.read, mockWriter.write);
 
     mockReader.addCommand("create-doors 2");
     mockReader.addCommand("quit");

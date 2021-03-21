@@ -1,18 +1,23 @@
-export class MockWriter{
-    results:Array<string>=[];
-    hasFoundResult=false;
+export class MockWriter {
+    results: Array<string> = [];
+    hasFoundResult = false;
+
     constructor() {
-        this.write=this.write.bind(this);
-        this.latestResult=this.latestResult.bind(this);
-        this.waitTillProcessed=this.waitTillProcessed.bind(this);
+        this.write = this.write.bind(this);
+        this.latestResult = this.latestResult.bind(this);
+        this.waitTillProcessed = this.waitTillProcessed.bind(this);
     }
-    write(result:string){
+
+    write(result: string) {
         this.results.push(result);
     }
-    latestResult(){
+
+    latestResult() {
         return this.results.shift();
     }
-    waitTillProcessed(numberOfCommands:number){
-        while(this.results.length!=numberOfCommands){}
+
+    waitTillProcessed(numberOfCommands: number) {
+        while (this.results.length != numberOfCommands) {
+        }
     }
 }
