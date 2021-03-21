@@ -10,5 +10,6 @@ export default class MockDoorFactory extends DoorFactory{
             throw new Error("Please enter a number.");
         if(this.shouldThrowRangeError)
             throw new Error("Please enter number between 1 to 200.")
+        return null;
     }
 }
