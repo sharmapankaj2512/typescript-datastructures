@@ -8,6 +8,6 @@ export class MockReader{
         this.commandList.push(command);
     }
     read(){
-        return this.commandList.pop();
+        return this.commandList.shift();
     }
 }

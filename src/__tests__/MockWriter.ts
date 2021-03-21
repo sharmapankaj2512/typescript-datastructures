@@ -10,7 +10,7 @@ export class MockWriter{
         this.results.push(result);
     }
     latestResult(){
-        return this.results.pop();
+        return this.results.shift();
     }
     waitTillProcessed(numberOfCommands:number){
         while(this.results.length!=numberOfCommands){}
