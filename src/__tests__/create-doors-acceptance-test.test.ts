@@ -11,10 +11,9 @@ test('processes valid create-doors command', () => {
 
     mockReader.addCommand("create-doors 2");
     mockReader.addCommand("quit");
-    console.log(mockReader);
     myApp.start();
     mockWriter.waitTillProcessed(2);
-    console.log(mockWriter);
+
     expect(mockWriter.latestResult()).toBe("2 doors created.");
     expect(mockWriter.latestResult()).toBe("Quitting");
 })

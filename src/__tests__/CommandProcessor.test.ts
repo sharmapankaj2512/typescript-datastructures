@@ -2,6 +2,7 @@ import CommandProcessor from "../CommandProcessor";
 import {MockReader} from "../test-helpers/MockReader";
 import {MockWriter} from "../test-helpers/MockWriter";
 import MockDoorFactory from "../test-helpers/MockDoorFactory";
+import MockDoors from "../test-helpers/MockDoors";
 
 test('processes valid create-doors command', () => {
     let mockReader = new MockReader();
@@ -66,26 +67,27 @@ test('processed valid quit command', () => {
     let mockReader = new MockReader();
     let mockWriter = new MockWriter();
     let commandProcessor = new CommandProcessor(mockReader.read, mockWriter.write);
+
     mockReader.addCommand("quit");
     let quit = commandProcessor.process();
 
     expect(quit).toBe(true);
 })
 
-test('processes valid status command', () => {
-    let mockReader = new MockReader();
-    let mockWriter = new MockWriter();
-    let mockDoorFactory = new MockDoorFactory();
-    let commandProcessor = new CommandProcessor(mockReader.read, mockWriter.write, mockDoorFactory);
+test('processes valid status command',()=>{
+    let mockReader=new MockReader();
+    let mockWriter=new MockWriter();
+    let mockDoors=new MockDoors();
+    let doorFactory=new MockDoorFactory(mockDoors);
+    let commandProcessor=new CommandProcessor(mockReader.read,mockWriter.write,doorFactory);
 
     mockReader.addCommand("create-doors 2");
-    let quit = commandProcessor.process();
+    commandProcessor.process();
     mockReader.addCommand("status");
-    quit = commandProcessor.process();
+    commandProcessor.process();
 
-    expect(quit).toBe(false);
+    expect(doorFactory.wasMakeCalled).toBe(true);
+    expect(mockDoors.wasStatusCalled).toBe(true);
     expect(mockWriter.latestResult()).toBe("2 doors created.");
-    const output = "Door\tStatus\n1\tCLOSED\n2\tCLOSED";
-    expect(mockWriter.latestResult()).toBe(output);
-    expect(mockDoorFactory.wasStatusCalled).toBe(true);
+    expect(mockWriter.latestResult()).toBe("Door\tStatus\n1\tCLOSED\n2\tCLOSED");
 })
